@@ -106,7 +106,7 @@ class SloopAdminMixin(object):
 
         admin_site = self.admin_site
         opts = self.model._meta
-        receivers = list(queryset.values_list('id', flat=True))
+        receivers = [str(r) for r in queryset.values_list('id', flat=True)]
         form = PushNotificationForm(initial={'receivers': json.dumps(receivers)})
 
         context = {
